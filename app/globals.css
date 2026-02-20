@@ -2,8 +2,97 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+@keyframes taskPop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+.theme-shell {
+  transition: background-color 220ms ease, color 220ms ease;
+  color: var(--text-main);
+}
+
+.theme-light {
+  --page-bg: radial-gradient(circle at 15% 0%, #f2f6ff 0%, #f8fafc 35%, #eef2ff 100%);
+  --grid-line: rgba(15, 23, 42, 0.06);
+  --panel-bg: rgba(255, 255, 255, 0.78);
+  --panel-border: rgba(148, 163, 184, 0.35);
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --card-border: rgba(148, 163, 184, 0.35);
+  --input-bg: #ffffff;
+  --input-border: #cbd5e1;
+  --text-main: #0f172a;
+  --text-soft: #475569;
+  --text-muted: #94a3b8;
+  --track-bg: #dbe2ee;
+  --accent-a: #0ea5e9;
+  --accent-b: #1d4ed8;
+  --focus-ring: rgba(14, 165, 233, 0.24);
+  --btn-primary-bg: #111827;
+  --btn-primary-text: #ffffff;
+  --chip-active-bg: #dbeafe;
+  --chip-active-text: #1e3a8a;
+  --chip-done-bg: #d1fae5;
+  --chip-done-text: #065f46;
+  --danger-soft: #fef2f2;
+  --danger-strong: #dc2626;
+  --danger-text: #b91c1c;
+  --danger-border: #fecaca;
+  --success-dot: #10b981;
+}
+
+.theme-dark {
+  --page-bg: radial-gradient(circle at 15% 0%, #111827 0%, #0f172a 40%, #020617 100%);
+  --grid-line: rgba(148, 163, 184, 0.12);
+  --panel-bg: rgba(15, 23, 42, 0.78);
+  --panel-border: rgba(148, 163, 184, 0.35);
+  --card-bg: rgba(30, 41, 59, 0.85);
+  --card-border: rgba(71, 85, 105, 0.8);
+  --input-bg: #1e293b;
+  --input-border: #475569;
+  --text-main: #f8fafc;
+  --text-soft: #cbd5e1;
+  --text-muted: #94a3b8;
+  --track-bg: #334155;
+  --accent-a: #67e8f9;
+  --accent-b: #38bdf8;
+  --focus-ring: rgba(56, 189, 248, 0.28);
+  --btn-primary-bg: #f8fafc;
+  --btn-primary-text: #0f172a;
+  --chip-active-bg: #083344;
+  --chip-active-text: #a5f3fc;
+  --chip-done-bg: #052e2b;
+  --chip-done-text: #a7f3d0;
+  --danger-soft: #3f1d1d;
+  --danger-strong: #ef4444;
+  --danger-text: #fecaca;
+  --danger-border: #7f1d1d;
+  --success-dot: #34d399;
+}
+
+.bg-grid {
+  background: var(--page-bg);
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.task-pop {
+  animation: taskPop 340ms ease-out both;
 }
