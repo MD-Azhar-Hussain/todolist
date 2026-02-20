@@ -181,36 +181,38 @@ export default function Page() {
 
   return (
     <main
-      className={`theme-shell min-h-screen bg-grid p-4 md:p-8 ${
+      className={`theme-shell min-h-screen bg-grid p-3 sm:p-4 md:p-6 xl:p-8 2xl:p-10 ${
         isDark ? "theme-dark" : "theme-light"
       }`}
     >
-      <section className="relative mx-auto max-w-6xl rounded-3xl border border-[var(--panel-border)] bg-[var(--panel-bg)] p-5 shadow-xl backdrop-blur-xl md:p-8">
+      <section className="relative mx-auto w-full max-w-[96rem] rounded-2xl border border-[var(--panel-border)] bg-[var(--panel-bg)] p-4 shadow-xl backdrop-blur-xl sm:rounded-3xl sm:p-5 md:p-7 xl:p-8 2xl:p-10">
         <button
           type="button"
           onClick={toggleTheme}
-          className="absolute right-5 top-5 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] px-3 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[var(--text-main)] transition hover:scale-[1.02]"
+          className="mb-4 w-full rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] px-3 py-2 text-xs font-bold uppercase tracking-[0.08em] text-[var(--text-main)] transition hover:scale-[1.02] sm:absolute sm:right-5 sm:top-5 sm:mb-0 sm:w-auto"
           aria-label={`Switch to ${isDark ? "white" : "black"} mode`}
         >
           {isDark ? "White Mode" : "Black Mode"}
         </button>
 
-        <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
+        <div className="mb-6 flex flex-col gap-4 sm:pr-28 md:mb-8 lg:flex-row lg:items-end lg:justify-between lg:gap-6 lg:pr-0">
+          <div className="min-w-0">
             <p className="mb-1 text-xs uppercase tracking-[0.2em] text-[var(--text-soft)]">
               Daily Planner
             </p>
-            <h1 className="font-[family-name:var(--font-geist-mono)] text-4xl font-black text-[var(--text-main)] md:text-5xl">
+            <h1 className="break-words font-[family-name:var(--font-geist-mono)] text-3xl font-black leading-tight text-[var(--text-main)] sm:text-4xl md:text-5xl 2xl:text-6xl">
               My List-of-Things
             </h1>
             <p className="mt-1 text-sm text-[var(--text-soft)]" suppressHydrationWarning>
               {isMounted ? `${dayLabel} | ${timeLabel}` : "Loading date and time..."}
             </p>
           </div>
-          <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] px-4 py-3 shadow-sm">
+          <div className="w-full rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] px-4 py-3 shadow-sm lg:w-auto">
             <p className="text-xs uppercase tracking-wider text-[var(--text-soft)]">Progress</p>
-            <p className="text-2xl font-bold text-[var(--text-main)]">{taskStats.completion}% done</p>
-            <div className="mt-2 h-2 w-40 rounded bg-[var(--track-bg)]">
+            <p className="text-xl font-bold text-[var(--text-main)] sm:text-2xl">
+              {taskStats.completion}% done
+            </p>
+            <div className="mt-2 h-2 w-full max-w-80 rounded bg-[var(--track-bg)] lg:w-56 2xl:w-72">
               <div
                 className="h-2 rounded bg-gradient-to-r from-[var(--accent-a)] to-[var(--accent-b)] transition-all duration-500"
                 style={{ width: `${taskStats.completion}%` }}
@@ -222,13 +224,13 @@ export default function Page() {
         <form
           onSubmit={submitHandler}
           onKeyDown={handleComposerKeyDown}
-          className="mb-6 grid grid-cols-1 gap-3 md:grid-cols-12"
+          className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-12"
         >
           <input
             id="task"
             type="text"
             placeholder="What needs to be done?"
-            className="rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] px-4 py-3 text-lg text-[var(--text-main)] outline-none transition placeholder:text-[var(--text-soft)] focus:border-[var(--accent-a)] focus:ring-2 focus:ring-[var(--focus-ring)] md:col-span-4"
+            className="rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] px-4 py-3 text-base text-[var(--text-main)] outline-none transition placeholder:text-[var(--text-soft)] focus:border-[var(--accent-a)] focus:ring-2 focus:ring-[var(--focus-ring)] sm:col-span-1 md:text-lg xl:col-span-4"
             value={task}
             onChange={(e) => setTask(e.target.value)}
           />
@@ -236,33 +238,33 @@ export default function Page() {
             id="desc"
             type="text"
             placeholder="Add a quick note"
-            className="rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] px-4 py-3 text-lg text-[var(--text-main)] outline-none transition placeholder:text-[var(--text-soft)] focus:border-[var(--accent-a)] focus:ring-2 focus:ring-[var(--focus-ring)] md:col-span-5"
+            className="rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] px-4 py-3 text-base text-[var(--text-main)] outline-none transition placeholder:text-[var(--text-soft)] focus:border-[var(--accent-a)] focus:ring-2 focus:ring-[var(--focus-ring)] sm:col-span-1 md:text-lg xl:col-span-5"
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
           />
           <button
-            className="rounded-xl bg-[var(--btn-primary-bg)] px-4 py-3 text-lg font-bold text-[var(--btn-primary-text)] transition hover:scale-[1.01] hover:brightness-110 md:col-span-3"
+            className="rounded-xl bg-[var(--btn-primary-bg)] px-4 py-3 text-base font-bold text-[var(--btn-primary-text)] transition hover:scale-[1.01] hover:brightness-110 sm:col-span-2 md:text-lg xl:col-span-3"
             type="submit"
           >
             Add Task
           </button>
         </form>
 
-        <div className="mb-5 grid grid-cols-1 gap-3 md:grid-cols-12">
+        <div className="mb-5 grid grid-cols-1 gap-3 lg:grid-cols-12">
           <input
             type="text"
             placeholder="Search tasks"
-            className="rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] px-4 py-3 text-[var(--text-main)] outline-none transition placeholder:text-[var(--text-soft)] focus:border-[var(--accent-a)] focus:ring-2 focus:ring-[var(--focus-ring)] md:col-span-5"
+            className="rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] px-4 py-3 text-[var(--text-main)] outline-none transition placeholder:text-[var(--text-soft)] focus:border-[var(--accent-a)] focus:ring-2 focus:ring-[var(--focus-ring)] lg:col-span-5"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          <div className="grid grid-cols-3 gap-2 md:col-span-4">
+          <div className="grid grid-cols-3 gap-2 lg:col-span-4">
             {["all", "active", "done"].map((type) => (
               <button
                 key={type}
                 type="button"
                 onClick={() => setFilter(type)}
-                className={`rounded-xl px-3 py-2 text-sm font-semibold capitalize transition ${
+                className={`rounded-xl px-3 py-2 text-xs font-semibold capitalize transition sm:text-sm ${
                   filter === type
                     ? "bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)]"
                     : "border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--text-soft)] hover:brightness-95"
@@ -272,7 +274,7 @@ export default function Page() {
               </button>
             ))}
           </div>
-          <div className="flex gap-2 md:col-span-3">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:col-span-3">
             <button
               className="w-full rounded-xl border border-[var(--danger-border)] bg-[var(--danger-soft)] px-3 py-2 text-sm font-semibold text-[var(--danger-text)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-50"
               onClick={clearCompletedHandler}
@@ -292,13 +294,13 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="mb-5 grid grid-cols-1 gap-3 md:grid-cols-12">
-          <div className="md:col-span-5">
+        <div className="mb-5 grid grid-cols-1 gap-3 lg:grid-cols-12">
+          <div className="lg:col-span-5">
             <p className="px-1 text-xs uppercase tracking-wider text-[var(--text-soft)]">
               Tip: press Ctrl/Cmd + Enter to add quickly
             </p>
           </div>
-          <div className="md:col-span-4">
+          <div className="lg:col-span-4">
             <select
               className="w-full rounded-xl border border-[var(--input-border)] bg-[var(--input-bg)] px-3 py-2 text-sm font-semibold text-[var(--text-main)] outline-none transition focus:border-[var(--accent-a)] focus:ring-2 focus:ring-[var(--focus-ring)]"
               value={sortBy}
@@ -310,7 +312,7 @@ export default function Page() {
               <option value="z-a">Sort: Z to A</option>
             </select>
           </div>
-          <div className="md:col-span-3" />
+          <div className="hidden lg:col-span-3 lg:block" />
         </div>
 
         <div className="mb-4 flex flex-wrap gap-2 text-sm">
@@ -325,7 +327,7 @@ export default function Page() {
           </span>
         </div>
 
-        <section className="min-h-64 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-4 shadow-inner">
+        <section className="min-h-64 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-3 shadow-inner sm:p-4 lg:p-5">
           {visibleTasks.length === 0 ? (
             <div className="py-12 text-center">
               <h2 className="text-lg font-semibold text-[var(--text-soft)]">No tasks for this view</h2>
@@ -347,8 +349,8 @@ export default function Page() {
                   className="task-pop rounded-xl border border-[var(--card-border)] bg-[var(--input-bg)] p-4 shadow-sm transition hover:shadow-md"
                   style={{ animationDelay: `${index * 45}ms` }}
                 >
-                  <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                    <div className="flex items-start gap-3">
+                  <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+                    <div className="flex min-w-0 items-start gap-3">
                       <button
                         onClick={() => toggleDoneHandler(t.id)}
                         type="button"
@@ -359,16 +361,20 @@ export default function Page() {
                         }`}
                         aria-label={`Mark ${t.task} as ${t.done ? "active" : "done"}`}
                       />
-                      <div>
+                      <div className="min-w-0">
                         <h3
-                          className={`text-xl font-semibold ${
+                          className={`break-words text-lg font-semibold sm:text-xl ${
                             t.done ? "text-[var(--text-muted)] line-through" : "text-[var(--text-main)]"
                           }`}
                         >
                           {t.task}
                         </h3>
                         {t.desc ? (
-                          <p className={`${t.done ? "text-[var(--text-muted)]" : "text-[var(--text-soft)]"}`}>
+                          <p
+                            className={`break-words text-sm sm:text-base ${
+                              t.done ? "text-[var(--text-muted)]" : "text-[var(--text-soft)]"
+                            }`}
+                          >
                             {t.desc}
                           </p>
                         ) : null}
@@ -376,7 +382,7 @@ export default function Page() {
                     </div>
 
                     <button
-                      className="rounded-lg border border-[var(--danger-border)] bg-[var(--danger-soft)] px-4 py-2 font-bold text-[var(--danger-text)] transition hover:brightness-95"
+                      className="w-full rounded-lg border border-[var(--danger-border)] bg-[var(--danger-soft)] px-4 py-2 font-bold text-[var(--danger-text)] transition hover:brightness-95 sm:w-auto"
                       onClick={() => deleteHandler(t.id)}
                       type="button"
                     >
